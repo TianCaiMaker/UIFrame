@@ -51,5 +51,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "UIFrame.sln"
+    "dotnet.defaultSolution": "UIFrame.sln",
+    "editor.quickSuggestions": { "other": true, "comments": false, "strings": false },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.quickSuggestionsDelay": 10,
+    "editor.suggest.showWords": true,
+    "editor.inlineSuggest.enabled": true
 }
