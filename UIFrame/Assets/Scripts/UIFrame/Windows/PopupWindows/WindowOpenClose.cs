@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 namespace UIFrame
 {
+    [RequireComponent(typeof(RectTransform))]
     public class WindowOpenClose : MonoBehaviour
     {
-        public UnityEvent onOpenPanel;
-        public UnityEvent onClosePanel;
-        public bool IsOpen{ get; protected set; } = false;
+        public UnityEvent onOpenWindow;
+        public UnityEvent onCloseWindow;
+        public bool IsOpen { get; protected set; } = false;
+        [HideInInspector]
         public bool closeImmediately = true;
         public virtual void Open()
         {
@@ -18,15 +20,11 @@ namespace UIFrame
             }
             IsOpen = true;
             gameObject.SetActive(true);
-            onOpenPanel?.Invoke();
+            onOpenWindow?.Invoke();
         }
         public virtual void Close()
         {
-            if (!IsOpen)
-            {
-                return;
-            }
-            IsOpen = false;
+            onCloseWindow?.Invoke();
             if (closeImmediately)
             {
                 ForceClose();
@@ -37,7 +35,6 @@ namespace UIFrame
         {
             IsOpen = false;
             gameObject.SetActive(false);
-            onClosePanel?.Invoke();
         }
     }
 }

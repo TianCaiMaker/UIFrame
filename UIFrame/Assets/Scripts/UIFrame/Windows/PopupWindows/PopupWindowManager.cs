@@ -31,6 +31,50 @@ namespace UIFrame
             windowMask.transform.SetSiblingIndex(0);
             SetWindowMaskActive(false);
         }
+        public void AddPopupWindow(PopupWindow popupWindow)
+        {
+            if (popupWindow == null)
+            {
+                return;
+            }
+            popupWindow.transform.SetParent(transform, false);
+            if (!popupWindowList.Contains(popupWindow))
+            {
+                popupWindowList.Add(popupWindow);
+                popupWindow.OnPopupOpened += OnPopupWindowOpen;
+                popupWindow.OnPopupClosed += OnPopupWindowClose;
+                if (!string.IsNullOrEmpty(popupWindow.layerName))
+                {
+                    if (!layerDict.TryGetValue(popupWindow.layerName, out var list))
+                    {
+                        list = new List<PopupWindow>();
+                        layerDict.Add(popupWindow.layerName, list);
+                    }
+                    list.Add(popupWindow);
+                }
+            }
+        }
+        public void RemovePopupWindow(PopupWindow popupWindow)
+        {
+            if (popupWindow == null)
+            {
+                return;
+            }
+            if (popupWindowList.Contains(popupWindow))
+            {
+                popupWindowList.Remove(popupWindow);
+                popupWindow.OnPopupOpened -= OnPopupWindowOpen;
+                popupWindow.OnPopupClosed -= OnPopupWindowClose;
+                if (!string.IsNullOrEmpty(popupWindow.layerName) && layerDict.TryGetValue(popupWindow.layerName, out var list))
+                {
+                    list.Remove(popupWindow);
+                    if (list.Count == 0)
+                    {
+                        layerDict.Remove(popupWindow.layerName);
+                    }
+                }
+            }
+        }
         public void OnPopupWindowOpen(PopupWindow popupWindow)
         {
             SetWindowMaskActive(true);

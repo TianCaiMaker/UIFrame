@@ -16,6 +16,10 @@ namespace UIFrame
         }
         public override void ForceClose()
         {
+            if (!IsOpen)
+            {
+                return;
+            }
             base.ForceClose();
             OnPopupClosed?.Invoke(this);
         }
