@@ -64,19 +64,41 @@
     <Analyzer Include="D:\App\Unity\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ValueModifiers\AttributeEnums.cs" />
+    <Compile Include="Assets\Scripts\ValueModifiers\AttributeValue.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Composites\RandomSelector.cs" />
     <Compile Include="Assets\Scripts\Tools\BezeirCurve.cs" />
+    <Compile Include="Assets\Scripts\ValueModifiers\AttributeModifier.cs" />
     <Compile Include="Assets\Scripts\Scene\UIFrameTest.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearBase.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\TapWindowToFront.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Source\BTree.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearValueAnimation.cs" />
+    <Compile Include="Assets\Scripts\TimeSystem\Timer.cs" />
+    <Compile Include="Assets\Scripts\Tools\SingletonMono.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Source\BTAction.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIScaleAppear.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Composites\BTComposite.cs" />
+    <Compile Include="Assets\Scripts\Event\EventSystem.cs" />
+    <Compile Include="Assets\Scripts\Scene\EventTest.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindow.cs" />
+    <Compile Include="Assets\Scripts\Tools\StringId.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Actions\Idle\Idle.cs" />
     <Compile Include="Assets\Scripts\UIFrame\IUIInite.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIMoveAppear.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Composites\Selector.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearAnimation.cs" />
+    <Compile Include="Assets\Scripts\ValueModifiers\ValueModifierTest.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\WindowOpenClose.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Actions\Idle\RandomTimeAbort.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Source\IBTNode.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Source\BTCondition.cs" />
     <Compile Include="Assets\Scripts\ThirdCamera\ThirdCamera.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Composites\Sequence.cs" />
+    <Compile Include="Assets\Scripts\Event\EventModule.cs" />
+    <Compile Include="Assets\Scripts\BTrees\Source\BTEnum.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIFadeAppear.cs" />
+    <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\IUIAppear.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindowManager.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\DragWindow.cs" />
@@ -974,12 +996,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Collections">
@@ -1090,8 +1112,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+    <Reference Include="Unity.FilmInternalUtilities">
+      <HintPath>Library\ScriptAssemblies\Unity.FilmInternalUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
@@ -1102,8 +1124,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.FilmInternalUtilities">
-      <HintPath>Library\ScriptAssemblies\Unity.FilmInternalUtilities.dll</HintPath>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
+      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">

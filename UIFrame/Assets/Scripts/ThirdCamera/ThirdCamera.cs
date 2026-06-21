@@ -188,7 +188,7 @@ namespace ThirdCameras
                 }
 
                 Gizmos.color = Color.green;
-                Gizmos.DrawSphere(rig.target.position, 0.1f);
+                Gizmos.DrawSphere(rig.target.position, 0.03f);
             }
         }
 
