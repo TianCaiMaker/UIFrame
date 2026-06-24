@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-namespace Tools
+using Tools;
+
+namespace EventSystems
 {
     public class StringId : Singleton<StringId>
     {

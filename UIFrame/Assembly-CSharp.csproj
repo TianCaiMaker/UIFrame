@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\BTrees\Source\BTAction.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIScaleAppear.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\BTComposite.cs" />
-    <Compile Include="Assets\Scripts\Event\EventSystem.cs" />
     <Compile Include="Assets\Scripts\Scene\EventTest.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindow.cs" />
     <Compile Include="Assets\Scripts\BTrees\Actions\Idle\Idle.cs" />
@@ -89,9 +88,11 @@
     <Compile Include="Assets\Scripts\BTrees\Composites\Selector.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearAnimation.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\ValueModifierTest.cs" />
+    <Compile Include="Assets\Scripts\Event\Extension\EventModuleExtension.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\WindowOpenClose.cs" />
     <Compile Include="Assets\Scripts\BTrees\Actions\Idle\RandomTimeAbort.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\IBTNode.cs" />
+    <Compile Include="Assets\Scripts\Event\Extension\EventBusWithString.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTCondition.cs" />
     <Compile Include="Assets\Scripts\ThirdCamera\ThirdCamera.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\Sequence.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\IUIAppear.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindowManager.cs" />
+    <Compile Include="Assets\Scripts\Event\EventBus.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\DragWindow.cs" />
   </ItemGroup>
   <ItemGroup>

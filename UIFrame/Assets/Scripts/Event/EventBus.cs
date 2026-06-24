@@ -1,21 +1,19 @@
 ﻿using System;
-using UnityEngine.PlayerLoop;
-
 namespace EventSystems
 {
     /// <summary>
     /// 事件系统管理器
     /// </summary>
-    public static class EventSystem
+    public static partial class EventBus
     {
         private static EventModule eventModule;
-        static EventSystem()
+        static EventBus()
         {
             eventModule = new EventModule();
         }
         public static void Init()
         {
-            eventModule.Clear();
+            eventModule.ClearAll();
         }
 
         #region 添加事件的监听，你想要关心某个事件，当这个事件触时，会执行你传递过来的Action
@@ -28,11 +26,43 @@ namespace EventSystems
         }
 
         /// <summary>
+        /// 添加无参事件并附带单个 tag
+        /// </summary>
+        public static void AddEventListener(int eventId, Action action, int tag)
+        {
+            eventModule.AddEventListener(eventId, action, tag);
+        }
+
+        /// <summary>
+        /// 添加无参事件并附带多个 tags
+        /// </summary>
+        public static void AddEventListener(int eventId, Action action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener(eventId, action, tags);
+        }
+
+        /// <summary>
         /// 添加1个参数事件
         /// </summary>
         public static void AddEventListener<T>(int eventId, Action<T> action)
         {
             eventModule.AddEventListener<Action<T>>(eventId, action);
+        }
+
+        /// <summary>
+        /// 添加带单个 tag 的多参事件监听
+        /// </summary>
+        public static void AddEventListener<T>(int eventId, Action<T> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T>>(eventId, action, tag);
+        }
+
+        /// <summary>
+        /// 添加带多个 tags 的多参事件监听
+        /// </summary>
+        public static void AddEventListener<T>(int eventId, Action<T> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加2个参数事件
@@ -403,11 +433,43 @@ namespace EventSystems
         }
 
         /// <summary>
+        /// 根据单个 tag 清空所有带该 tag 的事件
+        /// </summary>
+        public static void RemoveEventsByTag(int tag)
+        {
+            eventModule.RemoveEventsByTag(tag);
+        }
+
+        /// <summary>
+        /// 根据 tag 列表，移除包含任意一个 tag 的所有事件
+        /// </summary>
+        public static void RemoveEventsByTags(System.Collections.Generic.List<int> tags)
+        {
+            eventModule.RemoveEventsByTags(tags);
+        }
+
+        /// <summary>
+        /// 移除所有不包含指定 tag 的事件（单个 tag）
+        /// </summary>
+        public static void RemoveEventsNotContainingTag(int tag)
+        {
+            eventModule.RemoveEventsNotContainingTag(tag);
+        }
+
+        /// <summary>
+        /// 移除所有不包含输入 tag 列表中任一 tag 的事件
+        /// </summary>
+        public static void RemoveEventsNotContainingTags(System.Collections.Generic.List<int> tags)
+        {
+            eventModule.RemoveEventsNotContainingTags(tags);
+        }
+
+        /// <summary>
         /// 清空事件中心
         /// </summary>
         public static void Clear()
         {
-            eventModule.Clear();
+            eventModule.ClearAll();
         }
 
         #endregion

@@ -9,7 +9,7 @@ namespace EventSystems
         private Dictionary<int, IEventInfo> eventInfoDic = new Dictionary<int, IEventInfo>();
         #region 内部接口、内部类
 
-        private interface IEventInfo { void Destory(); }
+        private interface IEventInfo { void Destory(); HashSet<int> EventTags { get; } }
 
         /// <summary>
         /// 无参-事件信息
@@ -17,6 +17,8 @@ namespace EventSystems
         private class EventInfo : IEventInfo
         {
             public Action action;
+            private HashSet<int> eventTags = new HashSet<int>();
+            public HashSet<int> EventTags => eventTags;
             public void Init(Action action) { this.action = action; }
             public void Destory()
             {
@@ -30,6 +32,8 @@ namespace EventSystems
         private class MultipleParameterEventInfo<TAction> : IEventInfo where TAction : MulticastDelegate
         {
             public TAction action;
+            private HashSet<int> eventTags = new HashSet<int>();
+            public HashSet<int> EventTags => eventTags;
             public void Init(TAction action) { this.action = action; }
             public void Destory()
             {
@@ -57,6 +61,49 @@ namespace EventSystems
             }
         }
 
+        /// <summary>
+        /// 添加无参事件并附带单个 tag
+        /// </summary>
+        public void AddEventListener(int eventId, Action action, int tag)
+        {
+            if (eventInfoDic.TryGetValue(eventId, out IEventInfo info))
+            {
+                (info as EventInfo).action += action;
+                info.EventTags.Add(tag);
+            }
+            else
+            {
+                EventInfo eventInfo = new EventInfo();
+                eventInfo.Init(action);
+                eventInfo.EventTags.Add(tag);
+                eventInfoDic.Add(eventId, eventInfo);
+            }
+        }
+
+        /// <summary>
+        /// 添加无参事件并附带多个 tags
+        /// </summary>
+        public void AddEventListener(int eventId, Action action, List<int> tags)
+        {
+            if (tags == null || tags.Count == 0)
+            {
+                AddEventListener(eventId, action);
+                return;
+            }
+            if (eventInfoDic.TryGetValue(eventId, out IEventInfo info))
+            {
+                (info as EventInfo).action += action;
+                info.EventTags.UnionWith(tags);
+            }
+            else
+            {
+                EventInfo eventInfo = new EventInfo();
+                eventInfo.Init(action);
+                eventInfo.EventTags.UnionWith(tags);
+                eventInfoDic.Add(eventId, eventInfo);
+            }
+        }
+
 
         // <summary>
         // 添加1参事件监听
@@ -70,6 +117,47 @@ namespace EventSystems
                 info.action = (TAction)Delegate.Combine(info.action, action);
             }
             else AddMultipleParameterEventInfo(eventId, action);
+        }
+
+        /// <summary>
+        /// 添加带单个 tag 的多参事件监听
+        /// </summary>
+        public void AddEventListener<TAction>(int eventId, TAction action, int tag) where TAction : MulticastDelegate
+        {
+            if (eventInfoDic.TryGetValue(eventId, out IEventInfo eventInfo))
+            {
+                MultipleParameterEventInfo<TAction> info = (MultipleParameterEventInfo<TAction>)eventInfo;
+                info.action = (TAction)Delegate.Combine(info.action, action);
+                info.EventTags.Add(tag);
+            }
+            else
+            {
+                AddMultipleParameterEventInfo(eventId, action);
+                eventInfoDic[eventId].EventTags.Add(tag);
+            }
+        }
+
+        /// <summary>
+        /// 添加带多个 tags 的多参事件监听
+        /// </summary>
+        public void AddEventListener<TAction>(int eventId, TAction action, List<int> tags) where TAction : MulticastDelegate
+        {
+            if (tags == null || tags.Count == 0)
+            {
+                AddEventListener<TAction>(eventId, action);
+                return;
+            }
+            if (eventInfoDic.TryGetValue(eventId, out IEventInfo eventInfo))
+            {
+                MultipleParameterEventInfo<TAction> info = (MultipleParameterEventInfo<TAction>)eventInfo;
+                info.action = (TAction)Delegate.Combine(info.action, action);
+                info.EventTags.UnionWith(tags);
+            }
+            else
+            {
+                AddMultipleParameterEventInfo(eventId, action);
+                eventInfoDic[eventId].EventTags.UnionWith(tags);
+            }
         }
 
         private void AddMultipleParameterEventInfo<TAction>(int eventId, TAction action) where TAction : MulticastDelegate
@@ -249,9 +337,105 @@ namespace EventSystems
         }
 
         /// <summary>
-        /// 清空事件中心
+        /// 根据单个 tag 清空所有带该 tag 的事件（检查每个事件的 EventTags 列表）
         /// </summary>
-        public void Clear()
+        public void RemoveEventsByTag(int tag)
+        {
+            var keys = new List<int>(eventInfoDic.Keys);
+            foreach (var id in keys)
+            {
+                if (eventInfoDic.TryGetValue(id, out IEventInfo info))
+                {
+                    var tags = info.EventTags;
+                    if (tags != null && tags.Contains(tag))
+                    {
+                        RemoveEvent(id);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 根据 tag 列表，移除包含任意一个 tag 的所有事件
+        /// </summary>
+        public void RemoveEventsByTags(System.Collections.Generic.List<int> tags)
+        {
+            if (tags == null || tags.Count == 0) return;
+            var keys = new List<int>(eventInfoDic.Keys);
+            foreach (var id in keys)
+            {
+                if (eventInfoDic.TryGetValue(id, out IEventInfo info))
+                {
+                    var eventTags = info.EventTags;
+                    if (eventTags == null || eventTags.Count == 0) continue;
+                    for (int i = 0; i < tags.Count; i++)
+                    {
+                        if (eventTags.Contains(tags[i]))
+                        {
+                            RemoveEvent(id);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除所有不包含指定 tag 的事件（单个 tag）
+        /// </summary>
+        public void RemoveEventsNotContainingTag(int tag)
+        {
+            var keys = new List<int>(eventInfoDic.Keys);
+            foreach (var id in keys)
+            {
+                if (eventInfoDic.TryGetValue(id, out IEventInfo info))
+                {
+                    var eventTags = info.EventTags;
+                    // 若没有任何 tag 或者不包含指定 tag，则移除
+                    if (eventTags == null || eventTags.Count == 0 || !eventTags.Contains(tag))
+                    {
+                        RemoveEvent(id);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除所有不包含输入 tag 列表中任一 tag 的事件（即事件 tags 与输入 tags 无交集时移除）
+        /// </summary>
+        public void RemoveEventsNotContainingTags(System.Collections.Generic.List<int> tags)
+        {
+            if (tags == null || tags.Count == 0) return;
+            var keys = new List<int>(eventInfoDic.Keys);
+            foreach (var id in keys)
+            {
+                if (eventInfoDic.TryGetValue(id, out IEventInfo info))
+                {
+                    var eventTags = info.EventTags;
+                    // 若无 tags 则视为不包含，移除
+                    if (eventTags == null || eventTags.Count == 0)
+                    {
+                        RemoveEvent(id);
+                        continue;
+                    }
+                    bool has = false;
+                    for (int i = 0; i < tags.Count; i++)
+                    {
+                        if (eventTags.Contains(tags[i]))
+                        {
+                            has = true;
+                            break;
+                        }
+                    }
+                    if (!has) RemoveEvent(id);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空事件中心所有事件
+        /// </summary>
+        public void ClearAll()
         {
             foreach (int eventId in eventInfoDic.Keys)
             {

@@ -11,19 +11,38 @@ namespace Test
         string eventName2 = "TestEvent2";
         int eventId1;
         int eventId2;
+        int tagA = 100;
+        int tagB = 200;
         private void Start()
         {
-            eventId1 = Tools.StringId.Instance.GetId(eventName);
-            eventId2 = Tools.StringId.Instance.GetId(eventName2);
-            EventSystem.AddEventListener<int>(eventId1, OnTestEvent1);
-            EventSystem.AddEventListener(eventId2, OnTestEvent2);
-            EventSystem.AddEventListener<int>(eventId1, OnTestEvent1);
-            EventSystem.AddEventListener(eventId2, OnTestEvent2);
+            eventId1 = StringId.Instance.GetId(eventName);
+            eventId2 = StringId.Instance.GetId(eventName2);
+            // register with tags
+            EventBus.AddEventListener<int>(eventId1, OnTestEvent1, tagA);
+            EventBus.AddEventListener(eventId2, OnTestEvent2, tagB);
+            // add additional listeners without tags
+            EventBus.AddEventListener<int>(eventId1, OnTestEvent1);
+            EventBus.AddEventListener(eventId2, OnTestEvent2);
+
+            Debug.Log("--- before removals: trigger both ---");
+            TriggerEvents();
+
+            // remove events that have tagA
+            Debug.Log("Removing events by tagA");
+            EventBus.RemoveEventsByTag(tagA);
+            Debug.Log("--- after RemoveEventsByTag(tagA): trigger both ---");
+            TriggerEvents();
+
+            // now remove events not containing tagB (should remove events not tagged with tagB)
+            Debug.Log("Removing events not containing tagB");
+            EventBus.RemoveEventsNotContainingTag(tagB);
+            Debug.Log("--- after RemoveEventsNotContainingTag(tagB): trigger both ---");
+            TriggerEvents();
         }
         public void TriggerEvents()
         {
-            EventSystem.EventTrigger(eventId1, 42);
-            EventSystem.EventTrigger(eventId2);
+            EventBus.EventTrigger(eventId1, 42);
+            EventBus.EventTrigger(eventName2);
         }
 
         private void OnTestEvent2()
