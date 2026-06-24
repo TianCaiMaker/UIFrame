@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeEnums.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeValue.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\RandomSelector.cs" />
+    <Compile Include="Assets\Scripts\Event\StringId.cs" />
     <Compile Include="Assets\Scripts\Tools\BezeirCurve.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeModifier.cs" />
     <Compile Include="Assets\Scripts\Scene\UIFrameTest.cs" />
@@ -82,7 +83,6 @@
     <Compile Include="Assets\Scripts\Event\EventSystem.cs" />
     <Compile Include="Assets\Scripts\Scene\EventTest.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindow.cs" />
-    <Compile Include="Assets\Scripts\Tools\StringId.cs" />
     <Compile Include="Assets\Scripts\BTrees\Actions\Idle\Idle.cs" />
     <Compile Include="Assets\Scripts\UIFrame\IUIInite.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIMoveAppear.cs" />

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Tools
 {
-    public class StringId : SingletonMono<StringId>
+    public class StringId : Singleton<StringId>
     {
         private readonly Dictionary<string, int> _stringToId = new Dictionary<string, int>();
         private readonly Dictionary<int, string> _idToString = new Dictionary<int, string>();
