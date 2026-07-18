@@ -944,7 +944,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1090841581}
         m_TargetAssemblyTypeName: Test.EventTest, Assembly-CSharp
-        m_MethodName: TriggerEvents
+        m_MethodName: TriggerEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -72,11 +72,39 @@ namespace EventSystems
             eventModule.AddEventListener<Action<T0, T1>>(eventId, action);
         }
         /// <summary>
+        /// 添加2个参数事件并附带单个 tag
+        /// </summary>
+        public static void AddEventListener<T0, T1>(int eventId, Action<T0, T1> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1>>(eventId, action, tag);
+        }
+        /// <summary>
+        /// 添加2个参数事件并附带多个 tags
+        /// </summary>
+        public static void AddEventListener<T0, T1>(int eventId, Action<T0, T1> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1>>(eventId, action, tags);
+        }
+        /// <summary>
         /// 添加3个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2>(int eventId, Action<T0, T1, T2> action)
         {
             eventModule.AddEventListener<Action<T0, T1, T2>>(eventId, action);
+        }
+        /// <summary>
+        /// 添加3个参数事件并附带单个 tag
+        /// </summary>
+        public static void AddEventListener<T0, T1, T2>(int eventId, Action<T0, T1, T2> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2>>(eventId, action, tag);
+        }
+        /// <summary>
+        /// 添加3个参数事件并附带多个 tags
+        /// </summary>
+        public static void AddEventListener<T0, T1, T2>(int eventId, Action<T0, T1, T2> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加4个参数事件
@@ -85,12 +113,28 @@ namespace EventSystems
         {
             eventModule.AddEventListener<Action<T0, T1, T2, T3>>(eventId, action);
         }
+        public static void AddEventListener<T0, T1, T2, T3>(int eventId, Action<T0, T1, T2, T3> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3>(int eventId, Action<T0, T1, T2, T3> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3>>(eventId, action, tags);
+        }
         /// <summary>
         /// 添加5个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4>(int eventId, Action<T0, T1, T2, T3, T4> action)
         {
             eventModule.AddEventListener<Action<T0, T1, T2, T3, T4>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4>(int eventId, Action<T0, T1, T2, T3, T4> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4>(int eventId, Action<T0, T1, T2, T3, T4> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加6个参数事件
@@ -99,12 +143,28 @@ namespace EventSystems
         {
             eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5>>(eventId, action);
         }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5>(int eventId, Action<T0, T1, T2, T3, T4, T5> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5>(int eventId, Action<T0, T1, T2, T3, T4, T5> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5>>(eventId, action, tags);
+        }
         /// <summary>
         /// 添加7个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6> action)
         {
             eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加8个参数事件
@@ -113,61 +173,133 @@ namespace EventSystems
         {
             eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7>>(eventId, action);
         }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7>>(eventId, action, tags);
+        }
         /// <summary>
         /// 添加9个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加10个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加11个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加12个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加13个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加14个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加15个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>>(eventId, action, tags);
         }
         /// <summary>
         /// 添加16个参数事件
         /// </summary>
         public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action)
         {
-            eventModule.AddEventListener(eventId, action);
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>>(eventId, action);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action, int tag)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>>(eventId, action, tag);
+        }
+        public static void AddEventListener<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(int eventId, Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action, System.Collections.Generic.List<int> tags)
+        {
+            eventModule.AddEventListener<Action<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>>(eventId, action, tags);
         }
         #endregion
 
