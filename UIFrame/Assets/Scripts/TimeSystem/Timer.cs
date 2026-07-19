@@ -1,10 +1,10 @@
 using UnityEngine;
-namespace TimeSystem
+namespace TimeSystems
 {
 	/// <summary>
 	/// Default timer that calculates the elapsed time based on Time.time.
 	/// </summary>
-	public class Timer
+	public class Timer : ITimer
 	{
 		public float startTime;
 		public float Elapsed => Time.time - startTime;

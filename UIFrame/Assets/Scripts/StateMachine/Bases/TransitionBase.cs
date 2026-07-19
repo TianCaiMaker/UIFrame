@@ -9,7 +9,7 @@ namespace StateMachines
 		public TStateId to;
 		//是否强制立即转换（无视当前状态的IsAutoChange）
 		public bool forceInstantly;
-
+		public IStateMachine<TStateId> owner;
 		/// <summary>
 		/// Initialises a new instance of the TransitionBase class
 		/// </summary>

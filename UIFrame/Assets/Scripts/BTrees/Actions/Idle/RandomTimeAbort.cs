@@ -10,7 +10,7 @@ namespace BHTrees.Actions
 		public float maxTime = 5f;
 		float currentTime = 0f;
 		System.Random rand = new System.Random();
-		TimeSystem.Timer timer = new TimeSystem.Timer();
+		TimeSystems.Timer timer = new TimeSystems.Timer();
 		public void Awake()
 		{
 			ResetTimer();

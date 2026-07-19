@@ -115,7 +115,6 @@ namespace FactMachines
         {
             if (notifyDepth > 0)
                 return;
-
             foreach (var listener in needRegisterListeners)
             {
                 RegisterListenerImmediate(listener);

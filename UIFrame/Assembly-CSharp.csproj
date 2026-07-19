@@ -64,7 +64,8 @@
     <Analyzer Include="D:\App\Unity\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\StateMachine\TransitionBase.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Bases\ITriggerable.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Exceptions\StateMachineNotInitializedException.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeEnums.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeValue.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\RandomSelector.cs" />
@@ -79,17 +80,21 @@
     <Compile Include="Assets\Scripts\TimeSystem\Timer.cs" />
     <Compile Include="Assets\Scripts\Tools\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTAction.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\IState.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Bases\TransitionBase.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIScaleAppear.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\BTComposite.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Transition.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Bases\IStateMachine.cs" />
     <Compile Include="Assets\Scripts\Scene\EventTest.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Exceptions\ExceptionFormatter.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindow.cs" />
     <Compile Include="Assets\Scripts\BTrees\Actions\Idle\Idle.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Exceptions\StateNotFoundException.cs" />
     <Compile Include="Assets\Scripts\UIFrame\IUIInite.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIMoveAppear.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\Selector.cs" />
+    <Compile Include="Assets\Scripts\TimeSystem\ITimer.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearAnimation.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Bases\IState.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\ValueModifierTest.cs" />
     <Compile Include="Assets\Scripts\Event\Extension\EventModuleExtension.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\WindowOpenClose.cs" />
@@ -100,7 +105,6 @@
     <Compile Include="Assets\Scripts\Event\Extension\EventBusWithString.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTCondition.cs" />
     <Compile Include="Assets\Scripts\ThirdCamera\ThirdCamera.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\IStateMachine.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\Sequence.cs" />
     <Compile Include="Assets\Scripts\Event\EventModule.cs" />
     <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
@@ -109,8 +113,10 @@
     <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
     <Compile Include="Assets\Scripts\FactMachine\IFactInterface.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\IUIAppear.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Transitions\TransitionAfter.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\PopupWindowManager.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\Bases\Transition.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\DragWindow.cs" />
   </ItemGroup>
   <ItemGroup>
