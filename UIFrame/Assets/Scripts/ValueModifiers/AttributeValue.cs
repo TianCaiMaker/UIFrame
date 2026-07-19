@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Attributes
 {
-	public abstract class AttributeValue<TValue, TSource, TMultiplier> : MonoBehaviour
+	public abstract class AttributeValue<TValue, TSource> : MonoBehaviour
 	where TValue : Enum
 	where TSource : Enum
-	where TMultiplier : Enum
 	{
 		abstract public TValue attributeName { get; }
-		// 按 multiplierType(int) 到 buff 列表的映射（按 multiplierType 排序）
-		// 使用 List 替代 LinkedList，以便更好地利用 CPU 缓存，读取更快
-		SortedList<int, List<AttributeModifier<TValue, TSource, TMultiplier>>> buffs = new();
+		// 按 buff.priority 到 buff 列表的映射（按 priority 排序，priority 小的先计算）
+		SortedList<int, List<AttributeModifier<TValue, TSource>>> Muldifiers = new();
 		// 若为 false，则不允许 GetValue 返回负数（默认 false）
 		public bool allowNegative = false;
 		bool isDirty = true;
@@ -19,14 +17,14 @@ namespace Attributes
 
 		public event Action<float> ValueChanged;
 
-		public void AddBuff(AttributeModifier<TValue, TSource, TMultiplier> buff)
+		public void AddBuff(AttributeModifier<TValue, TSource> buff)
 		{
 			if (buff == null) return;
-			int key = Convert.ToInt32(buff.multiplierType);
-			if (!buffs.TryGetValue(key, out var list))
+			int key = buff.priority;
+			if (!Muldifiers.TryGetValue(key, out var list))
 			{
-				list = new List<AttributeModifier<TValue, TSource, TMultiplier>>();
-				buffs[key] = list;
+				list = new List<AttributeModifier<TValue, TSource>>();
+				Muldifiers[key] = list;
 			}
 			// 在同一 multiplierType 桶中按插入顺序添加（multiplierType 已作为桶的排序键）
 			list.Add(buff);
@@ -34,34 +32,34 @@ namespace Attributes
 			ValueChanged?.Invoke(GetValue);
 		}
 
-		public bool RemoveBuff(AttributeModifier<TValue, TSource, TMultiplier> buff)
+		public bool RemoveBuff(AttributeModifier<TValue, TSource> buff)
 		{
 			if (buff == null) return false;
-			int key = Convert.ToInt32(buff.multiplierType);
-			if (buffs.TryGetValue(key, out var list))
+			int key = buff.priority;
+			if (Muldifiers.TryGetValue(key, out var list))
 			{
 				for (int i = 0; i < list.Count; i++)
 				{
 					if (ReferenceEquals(list[i], buff))
 					{
 						list.RemoveAt(i);
-						if (list.Count == 0) buffs.Remove(key);
+						if (list.Count == 0) Muldifiers.Remove(key);
 						isDirty = true;
 						ValueChanged?.Invoke(GetValue);
 						return true;
 					}
 				}
 			}
-			// 兜底：在所有桶中查找（防止 multiplierType 字段不匹配的情况）
-			for (int k = 0; k < buffs.Count; k++)
+			// 兜底：在所有桶中查找（防止 priority 字段不匹配或外部引用问题）
+			for (int k = 0; k < Muldifiers.Count; k++)
 			{
-				var list2 = buffs.Values[k];
+				var list2 = Muldifiers.Values[k];
 				for (int i = 0; i < list2.Count; i++)
 				{
 					if (ReferenceEquals(list2[i], buff))
 					{
 						list2.RemoveAt(i);
-						if (list2.Count == 0) buffs.RemoveAt(k);
+						if (list2.Count == 0) Muldifiers.RemoveAt(k);
 						isDirty = true;
 						ValueChanged?.Invoke(GetValue);
 						return true;
@@ -71,8 +69,9 @@ namespace Attributes
 			return false;
 		}
 		/// <summary>
-		/// 获取属性值,计算顺序：先加基值，再按 multiplierType 小的优先的顺序
-		/// 依次乘以 基础区总和*[(1 + additivePercents)+finalAddValue]再乘下一个乘区
+		/// 获取属性值,计算顺序：先加基值，再按 `priority` 值从小到大（小的先）顺序计算
+		/// 对于相同 `priority` 的 buff，保持插入顺序；每个 priority 桶的计算逻辑不变：
+		/// 先汇总该桶的 `additivePercents` 与 `finalAddValue`，再按 result = result * (1 + additiveSum) + finalAddSum
 		/// </summary>
 		public float GetValue
 		{
@@ -82,25 +81,25 @@ namespace Attributes
 				{
 					float result = 0f;
 
-					for (int index = 0; index < buffs.Count; index++)
+					for (int index = 0; index < Muldifiers.Count; index++)
 					{
-						var list = buffs.Values[index];
+						var list = Muldifiers.Values[index];
 						for (int i = 0; i < list.Count; i++)
 						{
-							result += list[i].addBaseValue;
+							result += list[i].AddBaseValue;
 						}
 					}
 
-					// 按 multiplierType int 值升序计算（数字小的先计算）
-					for (int index = 0; index < buffs.Count; index++)
+					// 按 priority 值升序计算（priority 小的先计算，数字小的先计算）
+					for (int index = 0; index < Muldifiers.Count; index++)
 					{
-						var list = buffs.Values[index];
+						var list = Muldifiers.Values[index];
 						float additiveSum = 0f;
 						float finalAddSum = 0f;
 						for (int i = 0; i < list.Count; i++)
 						{
-							additiveSum += list[i].additivePercents;
-							finalAddSum += list[i].finalAddValue;
+							additiveSum += list[i].AdditivePercents;
+							finalAddSum += list[i].FinalAddValue;
 						}
 						result = result * (1f + additiveSum) + finalAddSum;
 					}

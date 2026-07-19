@@ -45,8 +45,7 @@ namespace StateMachines
         }
         #endregion
         #region StateMachine fields
-        private TOnwnerId name;
-        public TOnwnerId Name { get => name; set => name = value; }
+        public TOnwnerId Name { get;}
         private bool needsExitTime;
         public bool NeedsExitTime => needsExitTime;
         private IStateMachine<TOnwnerId> owner;
@@ -330,18 +329,17 @@ namespace StateMachines
 		/// </summary>
 		/// <param name="name">The name / identifier of the new state</param>
 		/// <param name="state">The new state instance, e.g. <c>State</c>, <c>CoState</c>, <c>StateMachine</c></param>
-		public void AddState(TStateId name, IState<TStateId> state)
+		public void AddState(IState<TStateId> state)
         {
             state.Owner = this;
-            state.Name = name;
             state.Init();
 
-            StateBundle bundle = GetOrCreateStateBundle(name);
+            StateBundle bundle = GetOrCreateStateBundle(state.Name);
             bundle.state = state;
 
             if (nameToStateBundle.Count == 1 && !startState.hasState)
             {
-                SetStartState(name);
+                SetStartState(state.Name);
             }
         }
         /// <summary>

@@ -7,7 +7,7 @@ namespace StateMachines
 	public interface IState<TStateId>
 	{
 		public bool NeedsExitTime { get;}
-		public TStateId Name { get; set; }
+		public TStateId Name { get;}
 		public IStateMachine<TStateId> Owner { get; set; }
 
 		/// <summary>

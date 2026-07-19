@@ -35,12 +35,15 @@ namespace FactMachines
         }
         private void RegisterListenerImmediate(IFactListener<TFact> listener)
         {
-            if (!listenerDict.TryGetValue(listener.Fact, out var listeners))
+            foreach (var fact in listener.Facts)
             {
-                listeners = new List<IFactListener<TFact>>();
-                listenerDict[listener.Fact] = listeners;
+                if (!listenerDict.TryGetValue(fact, out var listeners))
+                {
+                    listeners = new List<IFactListener<TFact>>();
+                    listenerDict[fact] = listeners;
+                }
+                listeners.Add(listener);
             }
-            listeners.Add(listener);
         }
         public void UnregisterListener(IFactListener<TFact> listener)
         {
@@ -53,12 +56,15 @@ namespace FactMachines
         }
         private void UnregisterListenerImmediate(IFactListener<TFact> listener)
         {
-            if (listenerDict.TryGetValue(listener.Fact, out var listeners))
+            foreach (var fact in listener.Facts)
             {
-                listeners.Remove(listener);
-                if (listeners.Count == 0)
+                if (listenerDict.TryGetValue(fact, out var listeners))
                 {
-                    listenerDict.Remove(listener.Fact);
+                    listeners.Remove(listener);
+                    if (listeners.Count == 0)
+                    {
+                        listenerDict.Remove(fact);
+                    }
                 }
             }
         }
@@ -115,6 +121,7 @@ namespace FactMachines
         {
             if (notifyDepth > 0)
                 return;
+            //这里时序会有问题，不要在OnFactTrigger里注册和注销同一个listener
             foreach (var listener in needRegisterListeners)
             {
                 RegisterListenerImmediate(listener);
@@ -124,6 +131,22 @@ namespace FactMachines
             {
                 UnregisterListenerImmediate(listener);
             }
+            needUnRegisterListeners.Clear();
+        }
+        public IFactContext GetFactContext(TFact fact)
+        {
+            if (contextDict.TryGetValue(fact, out var context))
+            {
+                return context;
+            }
+            return null;
+        }
+        public void Clear()
+        {
+            factSet.Clear();
+            contextDict.Clear();
+            listenerDict.Clear();
+            needRegisterListeners.Clear();
             needUnRegisterListeners.Clear();
         }
     }

@@ -4,7 +4,12 @@ using System;
 using Modifier.Test;
 namespace Modifier.Test
 {
-
+	public enum ModifierSourceType
+	{
+		Equipment,
+		Skill,
+		Potion,
+	}
 	public enum AttributeName
 	{
 		MaxHealth,
@@ -13,7 +18,7 @@ namespace Modifier.Test
 		Defense,
 	}
 }
-public class ValueModifierTest : AttributeValue<AttributeName, ModifierSourceType, ModifierMultiplierType>
+public class ValueModifierTest : AttributeValue<AttributeName, ModifierSourceType>
 {
 	public override AttributeName attributeName => AttributeName.Attack;
 
@@ -23,54 +28,50 @@ public class ValueModifierTest : AttributeValue<AttributeName, ModifierSourceTyp
 		this.ValueChanged += v => Debug.Log("ValueChanged:" + v);
 
 		// 同 multiplierType 的两个 buff（BaseAdd）
-		var b1 = new AttributeModifier<AttributeName, ModifierSourceType, ModifierMultiplierType>
+		var b1 = new AttributeModifier<AttributeName, ModifierSourceType>
 		{
 			buffName = "BaseAdd1",
-			priority = 1,
+			priority = 0,
 			valueType = AttributeName.Attack,
 			sourceType = ModifierSourceType.Equipment,
-			multiplierType = ModifierMultiplierType.Base,
-			addBaseValue = 10f,
-			additivePercents = 0.15f,
-			finalAddValue = 1f
+			AddBaseValue = 10f,
+			AdditivePercents = 0.15f,
+			FinalAddValue = 1f
 		};
 
-		var b2 = new AttributeModifier<AttributeName, ModifierSourceType, ModifierMultiplierType>
+		var b2 = new AttributeModifier<AttributeName, ModifierSourceType>
 		{
 			buffName = "BaseAdd2",
 			priority = 2,
 			valueType = AttributeName.Attack,
 			sourceType = ModifierSourceType.Equipment,
-			multiplierType = ModifierMultiplierType.Base,
-			addBaseValue = 5f,
-			additivePercents = 0.15f,
-			finalAddValue = 2f
+			AddBaseValue = 5f,
+			AdditivePercents = 0.15f,
+			FinalAddValue = 2f
 		};
 
 		// 不同 multiplierType：BasePercent
-		var b3 = new AttributeModifier<AttributeName, ModifierSourceType, ModifierMultiplierType>
+		var b3 = new AttributeModifier<AttributeName, ModifierSourceType>
 		{
 			buffName = "BasePercent1",
 			priority = 1,
 			valueType = AttributeName.Attack,
 			sourceType = ModifierSourceType.Skill,
-			multiplierType = ModifierMultiplierType.Add,
-			addBaseValue = 0f,
-			additivePercents = 0.1f, // 10%
-			finalAddValue = 3f
+			AddBaseValue = 0f,
+			AdditivePercents = 0.1f, // 10%
+			FinalAddValue = 3f
 		};
 
 		// 不同 multiplierType：AdditivePercent
-		var b4 = new AttributeModifier<AttributeName, ModifierSourceType, ModifierMultiplierType>
+		var b4 = new AttributeModifier<AttributeName, ModifierSourceType>
 		{
 			buffName = "AdditivePercent1",
 			priority = 1,
 			valueType = AttributeName.Attack,
 			sourceType = ModifierSourceType.Potion,
-			multiplierType = ModifierMultiplierType.Add,
-			addBaseValue = 20f,
-			additivePercents = 0.2f, // 20%
-			finalAddValue = 4f
+			AddBaseValue = 20f,
+			AdditivePercents = 0.2f, // 20%
+			FinalAddValue = 4f
 		};
 
 		// 添加并观察事件输出
@@ -78,8 +79,6 @@ public class ValueModifierTest : AttributeValue<AttributeName, ModifierSourceTyp
 		AddBuff(b2);
 		AddBuff(b3);
 		AddBuff(b4);
-		RemoveBuff(b1);
-		RemoveBuff(b2);
 		// 你也可以试试移除
 		// RemoveBuff(b2);
 	}

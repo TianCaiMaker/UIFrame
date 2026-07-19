@@ -7,19 +7,49 @@ namespace Attributes
 	/// </summary>
 	/// <typeparam name="TValue">数值类型，是攻击力还是防御力</typeparam>
 	/// <typeparam name="TSource">来源类型，是装备还是技能</typeparam>
-	/// <typeparam name="TMultiplier">乘区类型</typeparam>
-	public class AttributeModifier<TValue,TSource,TMultiplier>
+	public class AttributeModifier<TValue,TSource>
 	where TValue : Enum 
 	where TSource : Enum
-	where TMultiplier : Enum
 	{
 		public string buffName;
 		public int priority;
 		public TValue valueType;
 		public TSource sourceType;
-		public TMultiplier multiplierType;
-		public float addBaseValue;
-		public float additivePercents;
-		public float finalAddValue;
+		private float addBaseValue;
+		private float additivePercents;
+		private float finalAddValue;
+		public virtual float AddBaseValue
+		{
+			get
+			{
+				return addBaseValue;
+			}
+			set
+			{
+				addBaseValue = value;
+			}
+		}
+		public virtual float AdditivePercents
+		{
+			get
+			{
+				return additivePercents;
+			}
+			set
+			{
+				additivePercents = value;
+			}
+		}
+		public virtual float FinalAddValue
+		{
+			get
+			{
+				return finalAddValue;
+			}
+			set
+			{
+				finalAddValue = value;
+			}
+		}
 	}
 }
