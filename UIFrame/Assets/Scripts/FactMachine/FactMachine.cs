@@ -8,8 +8,7 @@ namespace FactMachines
         private Dictionary<TFact, IFactContext> contextDict = new();
         private Dictionary<TFact, List<IFactListener<TFact>>> listenerDict = new();
         private int notifyDepth = 0;
-        private List<IFactListener<TFact>> needRegisterListeners = new();
-        private List<IFactListener<TFact>> needUnRegisterListeners = new();
+        private Dictionary<IFactListener<TFact>, int> pendingDict = new();
         public void RegisterFact(TFact fact, IFactContext context)
         {
             if (!contextDict.ContainsKey(fact))
@@ -28,7 +27,14 @@ namespace FactMachines
         {
             if (notifyDepth > 0)
             {
-                needRegisterListeners.Add(listener);
+                if(pendingDict.TryGetValue(listener, out var count))
+                {
+                    pendingDict[listener] = count + 1;
+                }
+                else
+                {
+                    pendingDict[listener] = 1;
+                }
                 return;
             }
             RegisterListenerImmediate(listener);
@@ -49,7 +55,14 @@ namespace FactMachines
         {
             if (notifyDepth > 0)
             {
-                needUnRegisterListeners.Add(listener);
+                if(pendingDict.TryGetValue(listener, out var count))
+                {
+                    pendingDict[listener] = count - 1;
+                }
+                else
+                {
+                    pendingDict[listener] = -1;
+                }
                 return;
             }
             UnregisterListenerImmediate(listener);
@@ -121,17 +134,20 @@ namespace FactMachines
         {
             if (notifyDepth > 0)
                 return;
-            //这里时序会有问题，不要在OnFactTrigger里注册和注销同一个listener
-            foreach (var listener in needRegisterListeners)
+            foreach (var kvp in pendingDict)
             {
-                RegisterListenerImmediate(listener);
+                IFactListener<TFact> listener = kvp.Key;
+                int count = kvp.Value;
+                if (count > 0)
+                {
+                    RegisterListenerImmediate(listener);
+                }
+                else if (count < 0)
+                {
+                    UnregisterListenerImmediate(listener);
+                }
             }
-            needRegisterListeners.Clear();
-            foreach (var listener in needUnRegisterListeners)
-            {
-                UnregisterListenerImmediate(listener);
-            }
-            needUnRegisterListeners.Clear();
+            pendingDict.Clear();
         }
         public IFactContext GetFactContext(TFact fact)
         {
@@ -146,8 +162,7 @@ namespace FactMachines
             factSet.Clear();
             contextDict.Clear();
             listenerDict.Clear();
-            needRegisterListeners.Clear();
-            needUnRegisterListeners.Clear();
+            pendingDict.Clear();
         }
     }
 }
