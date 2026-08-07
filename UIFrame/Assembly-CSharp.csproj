@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CharacterTempelet\StateMachine\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Tools\BezeirCurve.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Misc\GameInput.cs" />
+    <Compile Include="Assets\Scripts\Tools\Init\IInit.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Velocity\CharacterVelocity.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTree.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearValueAnimation.cs" />
@@ -115,11 +116,11 @@
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\StateMachine\RPGStateContext.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\RayCasts\RaycastBox.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Exceptions\ExceptionFormatter.cs" />
-    <Compile Include="Assets\Scripts\UIFrame\IUIInite.cs" />
     <Compile Include="Assets\Scripts\TimeSystem\ITimer.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearAnimation.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Bases\IState.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\StateMachine\RPGCSM.cs" />
+    <Compile Include="Assets\Scripts\Tools\Init\InitChild.cs" />
     <Compile Include="Assets\Scripts\FactMachine\FactMachine.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\IBTNode.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Velocity\GravityVelocity.cs" />
