@@ -59,7 +59,7 @@
     <UnityVersion>2022.3.62f3c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\11034\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.2.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\11034\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.3.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\App\Unity\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\App\Unity\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -72,10 +72,12 @@
     <Compile Include="Assets\Scripts\Tools\BezeirCurve.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Misc\GameInput.cs" />
     <Compile Include="Assets\Scripts\Tools\Init\IInit.cs" />
+    <Compile Include="Assets\Scripts\Workflow\DelayWorkflowNodeRunner.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Velocity\CharacterVelocity.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTree.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearValueAnimation.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Velocity\InputVelocity.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowBuiltInRunnerFactory.cs" />
     <Compile Include="Assets\Scripts\TimeSystem\Timer.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTAction.cs" />
     <Compile Include="Assets\Scripts\Scene\UIScene\UIFrameTest.cs" />
@@ -87,7 +89,9 @@
     <Compile Include="Assets\Scripts\StateMachine\Exceptions\StateNotFoundException.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIMoveAppear.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\Selector.cs" />
+    <Compile Include="Assets\Scripts\Workflow\IWorkflowNodeRunner.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\StateMachine\CharacterSM.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowSpec.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\ValueModifierTest.cs" />
     <Compile Include="Assets\Scripts\Event\Extension\EventModuleExtension.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\PopupWindows\WindowOpenClose.cs" />
@@ -102,23 +106,30 @@
     <Compile Include="Assets\Scripts\UIFrame\Windows\DragWindow.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\Player\PlayerAnimeController.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Input\InputBlackboard.cs" />
+    <Compile Include="Assets\Scripts\Workflow\IWorkflowNodeRunnerFactory.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Exceptions\StateMachineNotInitializedException.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Input\StateContext.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\StateMachine\StateEnum.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowNodeSpec.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeValue.cs" />
     <Compile Include="Assets\Scripts\ValueModifiers\AttributeModifier.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowTickResult.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\Velocity\AverageVelocity.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearBase.cs" />
     <Compile Include="Assets\Scripts\UIFrame\Windows\TapWindowToFront.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowNodeRunner.cs" />
     <Compile Include="Assets\Scripts\Tools\SingletonMono.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowAsset.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Bases\TransitionBase.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\StateMachine\RPGStateContext.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\RayCasts\RaycastBox.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Exceptions\ExceptionFormatter.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowRunnerKeys.cs" />
     <Compile Include="Assets\Scripts\TimeSystem\ITimer.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\UIAppearAnimation.cs" />
     <Compile Include="Assets\Scripts\StateMachine\Bases\IState.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowInstance.cs" />
     <Compile Include="Assets\Scripts\Scene\RPG\Scripts\Character\StateMachine\RPGCSM.cs" />
     <Compile Include="Assets\Scripts\Tools\Init\InitChild.cs" />
     <Compile Include="Assets\Scripts\FactMachine\FactMachine.cs" />
@@ -129,7 +140,9 @@
     <Compile Include="Assets\Scripts\ThirdCamera\ThirdCamera.cs" />
     <Compile Include="Assets\Scripts\BTrees\Composites\Sequence.cs" />
     <Compile Include="Assets\Scripts\CharacterTempelet\RayCasts\GroundRayCast.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowNodeInstance.cs" />
     <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Workflow\WorkflowEnums.cs" />
     <Compile Include="Assets\Scripts\BTrees\Source\BTEnum.cs" />
     <Compile Include="Assets\Scripts\UIFrame\UIAnimation\UIAppearAnimations\Animations\UIFadeAppear.cs" />
     <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
