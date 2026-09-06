@@ -1,6 +1,6 @@
 namespace Workflow
 {
-    public enum WorkflowRunState
+    public enum WorkflowTickResult
     {
         Running,
         Completed

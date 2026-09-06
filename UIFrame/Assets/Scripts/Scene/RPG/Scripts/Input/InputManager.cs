@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FactMachines;
-using Tools;
+using General.Singleton;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Inputs
