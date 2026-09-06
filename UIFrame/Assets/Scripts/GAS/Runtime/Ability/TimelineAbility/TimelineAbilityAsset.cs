@@ -35,25 +35,25 @@ namespace GAS.Runtime
         // [LabelWidth(100)]
         public bool manualEndAbility;
 
-        [HideInInspector]
+        //[HideInInspector]
         public int FrameCount; // 能力结束时间
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<DurationalCueTrackData> DurationalCues = new List<DurationalCueTrackData>();
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<InstantCueTrackData> InstantCues = new List<InstantCueTrackData>();
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<ReleaseGameplayEffectTrackData> ReleaseGameplayEffect = new List<ReleaseGameplayEffectTrackData>();
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<BuffGameplayEffectTrackData> BuffGameplayEffects = new List<BuffGameplayEffectTrackData>();
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<TaskMarkEventTrackData> InstantTasks = new List<TaskMarkEventTrackData>();
 
-        [HideInInspector]
+        //[HideInInspector]
         public List<TaskClipEventTrackData> OngoingTasks = new List<TaskClipEventTrackData>();
 
 #if UNITY_EDITOR
@@ -76,6 +76,7 @@ namespace GAS.Runtime
     /// <summary>
     /// 这是一个最朴素的TimelineAbilityAsset实现, 如果要实现更复杂的TimelineAbilityAsset, 请用TimelineAbilityAssetBase或TimelineAbilityAssetT为基类
     /// </summary>
+    [CreateAssetMenu(fileName = "NewTimelineAbilityAsset", menuName = "GAS/Ability/TimelineAbilityAsset")]
     public sealed class TimelineAbilityAsset : TimelineAbilityAssetT<TimelineAbility>
     {
     }

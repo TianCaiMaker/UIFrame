@@ -14,12 +14,14 @@ namespace GAS.Editor
         private const string DefaultDatabaseFolderPath = "Assets/GAS/Editor/GameplayTags/EditorFile";
         private const string LegacyDatabaseAssetPath = "Assets/GAS/Editor/EditorFile/GameplayTagDatabase.asset";
         private const string DatabaseAssetFileName = "GameplayTagDatabase.asset";
-        private const string GeneratedScriptPath = "Assets/GAS/Runtime/Tags/GTagLib.gen.cs";
+        private const string DefaultGeneratedScriptPath = "Assets/GAS/Runtime/Tags/GTagLib.gen.cs";
         private const string EditorDataFolderName = "EditorFile";
+        private const string EditorFolderMarker = "/Editor/";
 
         private static GUIStyle _bannerLabelStyle;
         private static GUIStyle _popupBannerButtonStyle;
         private static string _databaseFolderPath;
+        private static string _gasRootPath;
 
         public static GUIStyle BannerLabelStyle
         {
@@ -262,6 +264,46 @@ namespace GAS.Editor
             return _databaseFolderPath;
         }
 
+        private static string GetGeneratedScriptAssetPath()
+        {
+            var gasRootPath = GetGasRootPath();
+            if (string.IsNullOrEmpty(gasRootPath))
+            {
+                return DefaultGeneratedScriptPath;
+            }
+
+            return CombineAssetPath(gasRootPath, $"Runtime/Tags/{GasDefine.GAS_TAG_LIB_CSHARP_SCRIPT_NAME}");
+        }
+
+        private static string GetGasRootPath()
+        {
+            if (!string.IsNullOrEmpty(_gasRootPath))
+            {
+                return _gasRootPath;
+            }
+
+            var scriptGuids = AssetDatabase.FindAssets($"{nameof(GameplayTagEditorUtility)} t:Script");
+            foreach (var guid in scriptGuids)
+            {
+                var scriptPath = AssetDatabase.GUIDToAssetPath(guid).Replace('\\', '/');
+                if (Path.GetFileNameWithoutExtension(scriptPath) != nameof(GameplayTagEditorUtility))
+                {
+                    continue;
+                }
+
+                var editorFolderIndex = scriptPath.IndexOf(EditorFolderMarker, StringComparison.Ordinal);
+                if (editorFolderIndex <= 0)
+                {
+                    continue;
+                }
+
+                _gasRootPath = scriptPath.Substring(0, editorFolderIndex);
+                return _gasRootPath;
+            }
+
+            return string.Empty;
+        }
+
         private static void EnsureFolder(string targetFolderPath)
         {
             if (AssetDatabase.IsValidFolder(targetFolderPath))
@@ -390,7 +432,8 @@ namespace GAS.Editor
                 return;
             }
 
-            var generatedFilePath = Path.Combine(projectRoot.FullName, GeneratedScriptPath.Replace('/', Path.DirectorySeparatorChar));
+            var generatedScriptAssetPath = GetGeneratedScriptAssetPath();
+            var generatedFilePath = Path.Combine(projectRoot.FullName, generatedScriptAssetPath.Replace('/', Path.DirectorySeparatorChar));
             var newContent = builder.ToString();
 
             if (File.Exists(generatedFilePath))
@@ -400,6 +443,12 @@ namespace GAS.Editor
                 {
                     return;
                 }
+            }
+
+            var generatedDirectory = Path.GetDirectoryName(generatedFilePath);
+            if (!string.IsNullOrEmpty(generatedDirectory))
+            {
+                Directory.CreateDirectory(generatedDirectory);
             }
 
             File.WriteAllText(generatedFilePath, newContent, Encoding.UTF8);

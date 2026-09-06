@@ -7,6 +7,7 @@ namespace GAS.Runtime
     [CreateAssetMenu(fileName = "GameplayEffect", menuName = "GAS/GameplayEffect")]
     public class GameplayEffectAsset : ScriptableObject, IGameplayEffectData
     {
+        /*
         private const string GRP_BASE = "Base";
         private const string GRP_BASE_H = "Base/H";
         private const string GRP_BASE_H_LEFT = "Base/H/Left";
@@ -26,7 +27,7 @@ namespace GAS.Runtime
         private const string ERROR_NONE_CUE = "Cue CAN NOT be NONE!";
         private const string ERROR_DURATION = "Duration must be > 0.";
         private const string ERROR_PERIOD_GE_NONE = "Period GameplayEffect CAN NOT be NONE!";
-        private const string ERROR_GRANTED_ABILITY_INVALID = "存在无效的Ability!";
+        private const string ERROR_GRANTED_ABILITY_INVALID = "存在无效的Ability!";*/
 
         #region Base Info
 

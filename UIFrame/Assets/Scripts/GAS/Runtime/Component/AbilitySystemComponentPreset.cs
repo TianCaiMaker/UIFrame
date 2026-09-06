@@ -9,8 +9,8 @@ namespace GAS.Runtime
     [CreateAssetMenu(fileName = "AbilitySystemComponentPreset", menuName = "GAS/AbilitySystemComponentPreset")]
     public class AbilitySystemComponentPreset : ScriptableObject
     {
-        private const int WIDTH_LABEL = 70;
-        private const string ERROR_ABILITY = "Ability can't be NONE!!";
+        //private const int WIDTH_LABEL = 70;
+        //private const string ERROR_ABILITY = "Ability can't be NONE!!";
 
         // [TitleGroup("Base")]
         // [HorizontalGroup("Base/H1", Width = 1 / 3f)]

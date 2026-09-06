@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e7dc1b4edefb14e8fa38e4d23fb61b, type: 3}
-  m_Name: GameplayTagDatabase
+  m_Script: {fileID: 11500000, guid: 85dd2a6201f04545b5a8b020edcb2690, type: 3}
+  m_Name: AbilitySystemComponentPreset
   m_EditorClassIdentifier: 
-  _tagNames: []
+  Description: 
+  AttributeSets: []
+  BaseTags: []
+  BaseAbilities: []

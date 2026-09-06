@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\GAS\Editor\GameplayTags\GameplayTagDatabase.cs" />
     <Compile Include="Assets\Scripts\GAS\Editor\GameplayTags\GameplayTagPickerWindow.cs" />
     <Compile Include="Assets\Scripts\GAS\Editor\GameplayTags\GameplayTagEditorUtility.cs" />
+    <Compile Include="Assets\Scripts\GAS\Editor\Ability\AbilityAssetEditor.cs" />
     <Compile Include="Assets\Scripts\GAS\Editor\GameplayTags\TagManager.cs" />
   </ItemGroup>
   <ItemGroup>
