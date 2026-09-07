@@ -140,8 +140,27 @@ namespace GAS.Editor
         private void DrawBanner(Rect rect, string title, int depth)
         {
             EditorGUI.DrawRect(rect, GameplayTagEditorUtility.GetBannerColor(depth));
-            GUI.Label(new Rect(rect.x + 10f, rect.y + 3f, rect.width - 14f, rect.height - 6f), title,
-                GameplayTagEditorUtility.BannerLabelStyle);
+
+            // Right-aligned copy button size and padding
+            const float buttonWidth = 64f;
+            var buttonHeight = Mathf.Max(14f, rect.height - 8f);
+            const float padding = 8f;
+            var buttonRect = new Rect(rect.xMax - padding - buttonWidth,
+                rect.y + (rect.height - buttonHeight) / 2f, buttonWidth, buttonHeight);
+
+            // Label should avoid overlapping the right button
+            var labelLeft = rect.x + 10f;
+            var labelRight = buttonRect.x - 6f;
+            var labelWidth = Mathf.Max(0f, labelRight - labelLeft);
+            var labelRect = new Rect(labelLeft, rect.y + 3f, labelWidth, rect.height - 6f);
+
+            GUI.Label(labelRect, title, GameplayTagEditorUtility.BannerLabelStyle);
+
+            if (GUI.Button(buttonRect, new GUIContent("Copy", "Copy tag path"), EditorStyles.miniButton))
+            {
+                EditorGUIUtility.systemCopyBuffer = title;
+                ShowNotification(new GUIContent($"Copied {title}"));
+            }
         }
 
         private void DrawCreateRow(string parentPath, int depth, float contentWidth)
